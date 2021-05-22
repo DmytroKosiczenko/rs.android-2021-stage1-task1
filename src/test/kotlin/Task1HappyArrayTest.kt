@@ -1,5 +1,5 @@
-import org.junit.Assert.assertArrayEquals
 import org.junit.Test
+import org.junit.Assert.assertArrayEquals
 import subtask1.HappyArray
 
 class Task1HappyArrayTest {
