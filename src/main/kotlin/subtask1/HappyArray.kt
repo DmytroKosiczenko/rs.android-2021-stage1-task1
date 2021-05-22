@@ -3,37 +3,20 @@ package subtask1
 class HappyArray {
 
     fun convertToHappy(sadArray: IntArray) : IntArray{
-        var sadArraySize = sadArray.size
-        if ( sadArraySize <= 2)
-            return sadArray
-
-        var  happyArray: MutableList<Int> = mutableListOf<Int>()
-
-        happyArray.add(sadArray[0])
-
+        var  resultArray: MutableList<Int> = sadArray.toMutableList()
         var i = 1
-        while (i < sadArraySize-1)  {
-            if (sadArray[i-1] + sadArray[i+1] >= sadArray[i]) {
-                happyArray.add(sadArray[i])
-            }
-            i++;
-        }
-        happyArray.add(sadArray[i])
+        while (i < resultArray.size-1)  {
+            if(resultArray.size <= 2) break
 
-        if (!isHappy(happyArray.toIntArray())) {
-           convertToHappy(happyArray.toIntArray())
-        }
-        return happyArray.toIntArray();
-    }
-
-    fun isHappy(checkArray: IntArray) : Boolean {
-        var i = 1
-        while (i < checkArray.size-1)  {
-            if (checkArray[i-1] + checkArray[i+1] < checkArray[i]) {
-                return false
+            if (resultArray[i] > resultArray[i-1] + resultArray[i+1]) {
+                resultArray.removeAt(i)
+                i--
+            } else {
+                i++;
             }
-            i++;
+
+            if(i < 1) i = 1
         }
-        return true;
+        return resultArray.toIntArray();
     }
 }
